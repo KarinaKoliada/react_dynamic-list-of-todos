@@ -20,7 +20,7 @@ export const TodoModal: React.FC<Props> = ({
       <div className="modal-background" onClick={onClose} />
 
       {loading ? (
-        <Loader />
+        <Loader dataCy="loader" />
       ) : (
         <div className="modal-card">
           <header className="modal-card-head">

@@ -4,12 +4,14 @@ type Props = {
   todos: Todo[];
   onSelectTodo: (todo: Todo) => void;
   selectedTodoId?: number;
+  onDeselectTodo: () => void;
 };
 
 export const TodoList: React.FC<Props> = ({
   todos,
   onSelectTodo,
   selectedTodoId,
+  onDeselectTodo,
 }) => {
   return (
     <table className="table is-narrow is-fullwidth">
@@ -50,7 +52,18 @@ export const TodoList: React.FC<Props> = ({
             </td>
 
             <td className="has-text-right is-vcentered">
-              {selectedTodoId === undefined || selectedTodoId === todo.id ? (
+              {selectedTodoId === todo.id ? (
+                <button
+                  data-cy="hideButton"
+                  className="button"
+                  type="button"
+                  onClick={onDeselectTodo}
+                >
+                  <span className="icon">
+                    <i className="fas fa-eye-slash" />
+                  </span>
+                </button>
+              ) : (
                 <button
                   data-cy="selectButton"
                   className="button"
@@ -61,7 +74,7 @@ export const TodoList: React.FC<Props> = ({
                     <i className="far fa-eye" />
                   </span>
                 </button>
-              ) : null}
+              )}
             </td>
           </tr>
         ))}

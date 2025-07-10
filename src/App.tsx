@@ -81,12 +81,13 @@ export const App: React.FC = () => {
           </div>
 
           <div className="block">
-            {loading && <Loader />}
+            {loading && <Loader dataCy="loader" />}
             {!loading && (
               <TodoList
                 todos={filteredTodos}
                 onSelectTodo={handleSelectTodo}
                 selectedTodoId={selectedTodo?.id}
+                onDeselectTodo={handleCloseModal}
               />
             )}
           </div>
@@ -95,7 +96,7 @@ export const App: React.FC = () => {
         </div>
       </div>
 
-      {selectedTodo && user && (
+      {selectedTodo && (
         <TodoModal
           todo={selectedTodo}
           user={user}
